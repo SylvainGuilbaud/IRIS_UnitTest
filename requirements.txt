@@ -1,0 +1,5 @@
+dataclass_csv
+numpy
+pandas
+openpyxl
+sqlalchemy-iris

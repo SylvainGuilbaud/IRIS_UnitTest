@@ -1,0 +1,27 @@
+#;  set r=##class(%Net.HttpRequest).%New(),r.Server="pm.community.intersystems.com",r.SSLConfiguration="ISC.FeatureTracker.SSL.Config" d r.Get("/packages/zpm/latest/installer"),$system.OBJ.LoadStream(r.HttpResponse.Data,"c")
+ zpm "install webterminal"
+ zpm "install objectscript-json-trace-viewer"
+ zpm "install swagger-ui" 
+#;  zpm "install iris-apipub" 
+ zpm "install classexplorer" 
+#;  zpm "install openapi-client-gen"
+
+ zn "%SYS"
+ do ##class(Security.Users).UnExpireUserPasswords("*")
+ set tRes = ##class(%SQL.Statement).%ExecDirect(,"update security.events set enabled=1")
+ 
+ set username="interop"
+ set roles="%EnsRole_Developer,%DB_IRISAPP-CODE,%DB_IRISAPP-DATA"
+ set password="SYS"
+ set sc = ##class(Security.Users).Create(username,roles,password,,"IRISAPP",,"",0,1,,,,,,1,1)
+ if 'sc {
+    set ^["USER"]TRACE($zdt($now(),3,,6),"%SYS Create User "_username)=$lb($system.Status.GetErrorCodes(sc),$system.Status.GetErrorText(sc))
+ } else {
+    set ^["USER"]TRACE($zdt($now(),3,,6),"%SYS Create User "_username)="successful"
+ }
+ 
+ zn "IRISAPP" 
+ do $system.OBJ.Load("/home/irisowner/dev/src/inc/FCE.inc")
+ do $System.OBJ.LoadDir("/home/irisowner/dev/src","ck",,1)
+ 
+halt

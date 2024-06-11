@@ -1,0 +1,17 @@
+{
+    "objectscript.conn": {
+        "ns": "IRISAPP",
+        "docker-compose": {
+            "internalPort": 52773,
+            "service": "iris"
+        },
+        "active": true,
+        "links": {
+            "Unit Test Portal": "http://localhost:8000/csp/sys/%25UnitTest.Portal.Home.cls?$NAMESPACE=IRISAPP",
+            "License Key": "http://${host}:${port}/csp/sys/mgr/%25CSP.UI.Portal.License.Key.zen",
+            "API Atelier IRIS": "http://${host}:${port}/api/atelier/",
+            "IRIS API Management": "http://${host}:${port}/api/mgmnt/",
+            "IRIS METRICS": "http://${host}:${port}/api/monitor/metrics"
+        }
+    }
+}
