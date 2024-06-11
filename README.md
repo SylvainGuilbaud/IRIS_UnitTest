@@ -15,7 +15,7 @@ After that, all your tests results can be found in the [UnitTest Portal](http://
 
 1. Open an IRIS Terminal Session 
 ```shell
-docker exec -ti iris-unit-test iris session iris
+docker exec -ti iris-unit-test iris session iris -U IRISAPP
 ```
 2. Run UnitTest
 ```objectscript
