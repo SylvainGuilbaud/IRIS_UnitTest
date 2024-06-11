@@ -24,4 +24,6 @@
  do $system.OBJ.Load("/home/irisowner/dev/src/inc/FCE.inc")
  do $System.OBJ.LoadDir("/home/irisowner/dev/src","ck",,1)
  
+ do ##class(UnitTest.utils).run("/home/irisowner/dev/data/unittests")
+
 halt

@@ -19,4 +19,13 @@ Method TestKO()
     }
 }
 
+Method TestMT()
+{
+    Do $$$AssertEquals(##class(%Dictionary.ClassDefinition).%ExistsId("data.commande"), $$$YES)
+    set a = ##class(%Dictionary.ClassDefinition).%OpenId("data.commande")
+    if $ISOBJECT(a) {
+        Do $$$AssertEquals((a.Super = "%Persistent,%JSON.Adaptor,%XML.Adaptor") , $$$YES)
+    }
+}
+
 }
